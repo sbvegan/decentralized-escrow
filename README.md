@@ -1,39 +1,24 @@
-# <h1 align="center"> Forge Template </h1>
+# Decentralized Escrow
 
-**Template repository for getting started quickly with Foundry projects**
+Escrows require trusted third parties, this dapp is a proof of concept that shows how trustless escrow can powered by smart contracts, Chainlink Keepers, and Data Feeds. 
 
-![Github Actions](https://github.com/foundry-rs/forge-template/workflows/Tests/badge.svg)
+## Inspiration
 
-## Getting Started
+When you spend an embarrassing amount of time on Twitter, you sometimes see ridiculous things. One of those things was a $22M bet on whether the spot price of $LUNA would be higher or lower than $88 in one year. The original bet was for $1M between an anon trader: AIgod and the creator of Terra: Do Kwon (I think after the fact, Do Kwon made a $10M bet with someone else under the same parameters). The trusted escrow for the bet is wealthy niche celebrity Cobie.
 
-Click `use this template` on [Github](https://github.com/foundry-rs/forge-template) to create a new repository with this repo as the initial state.
+After reading the saga, it left me thinking two things:
 
-Or, if your repo already exists, run:
-```sh
-forge init
-forge build
-forge test
-```
+1. Damn. I know I'm blessed, but now I feel extremely improvrished.
+2. This could've been done in a trustless manner with smart contracts and Chainlink.
 
-## Writing your first test
+## What it does
 
-All you need is to `import forge-std/Test.sol` and then inherit it from your test contract. Forge-std's Test contract comes with a pre-instatiated [cheatcodes environment](https://book.getfoundry.sh/cheatcodes/), the `vm`. It also has support for [ds-test](https://book.getfoundry.sh/reference/ds-test.html)-style logs and assertions. Finally, it supports Hardhat's [console.log](https://github.com/brockelmore/forge-std/blob/master/src/console.sol). The logging functionalities require `-vvvv`.
+## How we built it
 
-```solidity
-pragma solidity 0.8.10;
+## Challenges we ran into
 
-import "forge-std/Test.sol";
+## Accomplishments that we're proud of
 
-contract ContractTest is Test {
-    function testExample() public {
-        vm.roll(100);
-        console.log(1);
-        emit log("hi");
-        assertTrue(true);
-    }
-}
-```
+## What we learned
 
-## Development
-
-This project uses [Foundry](https://getfoundry.sh). See the [book](https://book.getfoundry.sh/getting-started/installation.html) for instructions on how to install and use Foundry.
+## What's next for Decentralized Escrow  
