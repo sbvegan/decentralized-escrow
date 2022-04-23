@@ -1,21 +1,29 @@
 const hre = require("hardhat");
 
 async function deploy() {
-  const ethusdDatafeed = "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419";
-  const anchorPrice = 3000;
-  const may27th = 1653609600;
+  const deployParameters = {
+    datafeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+    wager: 100, // 100 wei bet - high rollers
+    anchorPrice: 3000, // needs proper amount of decimals
+    expiration: 1653609600 // May 27th
+  }
 
   // We get the contract to deploy
-  const EscrowBet = await hre.ethers.getContractFactory("EscrowBet");
-  const escrowBet = await EscrowBet.deploy(ethusdDatafeed, anchorPrice, may27th);
+  const Escrow = await hre.ethers.getContractFactory("Escrow");
+  const escrow = await Escrow.deploy(
+    deployParameters.datafeed,
+    deployParameters.wager,
+    deployParameters.anchorPrice,
+    deployParameters.expiration
+  );
+  await escrow.deployed();
 
-  await escrowBet.deployed();
-
-  console.log("escrowBet deployed to:", escrowBet.address);
+  console.log("escrow deployed to:", escrow.address);
+  return escrow;
 }
 
 async function main() {
-  await deploy()
+  const escrowContract = await deploy()
 }
 
 // We recommend this pattern to be able to use async/await everywhere
