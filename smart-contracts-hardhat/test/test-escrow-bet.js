@@ -14,7 +14,19 @@ describe("Escrow", () => {
     expect(await escrow.assetDatafeed()).to.equal(ethusdDatafeed);
   });
 
-  it("should place the first bet", () => {
+  it("should place the bull bet (no counter party)", () => {
+
+  })
+
+  it("should place the bear bet (no counter party)", () => {
+
+  })
+
+  it("should place the bull bet (counter party)", () => {
+
+  })
+
+  it("should place the bear bet (counter party)", () => {
 
   })
 });

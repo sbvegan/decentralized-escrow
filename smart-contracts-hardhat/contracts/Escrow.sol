@@ -13,6 +13,7 @@ contract Escrow {
     uint256 public initTimestamp; // timestamp the bet was initialized
     uint256 public activeTimestamp; // timestamp the bet was fully funded
     uint256 public paydayTimestamp; // payday / expiration time
+    // TODO: account for one deposit made
     enum State {
         INITIALIZED,
         ACTIVE,
@@ -41,7 +42,18 @@ contract Escrow {
     }
 
     // TODO: deposit functionality
+    // TODO: refactor
+    function bullDeposit() public payable {
+        require(bull == address(0), "The bull deposit was already made.");
+        require(int256(msg.value) == wager, "Must deposit wager ammount.");
+        bull = msg.sender;
+    }
 
+    function bearDeposit() public payable {
+        require(bear == address(0), "The bear deposit was already made.");
+        require(int256(msg.value) == wager, "Must deposit wager ammount.");
+        bear = msg.sender;
+    }
     // TODO: checkUpkeep
 
     // TODO: performUpkeep
