@@ -7,8 +7,8 @@ contract Escrow {
     address public bear; // bets the price will be lower than anchor at expiration
     // parameters
     address public assetDatafeed; // chainlink data feed to get the price
-    int256 public anchorPrice; // anchor > expirationPrice --> bear and vice versa
-    int256 public wager; // the amount each party has to put up
+    uint256 public anchorPrice; // anchor > expirationPrice --> bear and vice versa
+    uint256 public wager; // the amount each party has to put up
     // timekeeping
     uint256 public initTimestamp; // timestamp the bet was initialized
     uint256 public activeTimestamp; // timestamp the bet was fully funded
@@ -28,8 +28,8 @@ contract Escrow {
     */
     constructor(
         address _assetDatafeed,
-        int256 _wager,
-        int256 _anchorPrice,
+        uint256 _wager,
+        uint256 _anchorPrice,
         uint256 _paydayTimestamp
     ) {
         // TODO: add parameter checks
@@ -45,15 +45,20 @@ contract Escrow {
     // TODO: refactor
     function bullDeposit() public payable {
         require(bull == address(0), "The bull deposit was already made.");
-        require(int256(msg.value) == wager, "Must deposit wager ammount.");
+        require(msg.value == wager, "Must deposit wager ammount.");
         bull = msg.sender;
     }
 
     function bearDeposit() public payable {
         require(bear == address(0), "The bear deposit was already made.");
-        require(int256(msg.value) == wager, "Must deposit wager ammount.");
+        require(msg.value == wager, "Must deposit wager ammount.");
         bear = msg.sender;
     }
+
+    function showContractBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
     // TODO: checkUpkeep
 
     // TODO: performUpkeep
