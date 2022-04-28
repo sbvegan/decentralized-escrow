@@ -2,9 +2,9 @@ const hre = require("hardhat");
 
 async function deploy() {
   const deployParameters = {
-    datafeed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
-    wager: 100, // 100 wei bet - high rollers
-    anchorPrice: 3000, // needs proper amount of decimals
+    datafeed: "0x9326BFA02ADD2366b30bacB125260Af641031331", // kovan eth/usd
+    wager: ethers.utils.parseUnits("0.01", "ether"), 
+    anchorPrice: 300000000000, // $3000 eth, chainlink price feed has 8 decimal places
     expiration: 1653609600 // May 27th
   }
 
