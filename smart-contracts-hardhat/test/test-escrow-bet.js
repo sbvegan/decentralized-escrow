@@ -28,10 +28,6 @@ describe("Escrow", () => {
     await escrow.deployed();
   })
 
-  it("should initialize the contract", async function () {
-    expect(await escrow.assetDatafeed()).to.equal(ethusdDatafeed);
-  });
-
   it("should place the bull bet (no counter party)", async () => {
     await escrow.connect(bull).bullDeposit({
       value: wager,
@@ -61,5 +57,9 @@ describe("Escrow", () => {
     expect(await escrow.bear()).to.equal(bear.address)
     expect(await escrow.bull()).to.equal(bull.address)
     expect((await escrow.showContractBalance()).toString()).to.equal((wager * 2).toString())
+  })
+
+  it("should get the price", async () => {
+    expect(await escrow.getLatestPrice()).to.not.equal(0)
   })
 });
