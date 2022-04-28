@@ -86,19 +86,26 @@ contract Escrow is KeeperCompatibleInterface {
         return price;
     }
 
-    function checkUpkeep(bytes calldata) 
-      external 
-      view 
-      override 
-      returns (bool upkeepNeeded, bytes memory /* performData */) {
+    function checkUpkeep(bytes calldata)
+        external
+        view
+        override
+        returns (
+            bool upkeepNeeded,
+            bytes memory /* performData */
+        )
+    {
         upkeepNeeded = block.timestamp > paydayTimestamp;
-        return upkeepNeeded
+        return upkeepNeeded;
     }
 
-    function performUpkeep(bytes calldata /* performData */) external override {
+    function performUpkeep(
+        bytes calldata /* performData */
+    ) external override {
         //We highly recommend revalidating the upkeep in the performUpkeep function
         if (block.timestamp > paydayTimestamp) {
-            if (getLatestPrice() >= anchorPrice) { // let's just say tie goes to the bulls
+            if (getLatestPrice() >= anchorPrice) {
+                // let's just say tie goes to the bulls
                 sendWinnings(true);
             } else {
                 sendWinnings(false);
