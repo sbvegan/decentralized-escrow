@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-// import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
+import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
-contract Escrow {
+contract Escrow is KeeperCompatibleInterface {
     // chainlink price feed
     AggregatorV3Interface internal priceFeed;
 
@@ -86,25 +86,25 @@ contract Escrow {
         return price;
     }
 
-    // function checkUpkeep(bytes calldata) 
-    //   external 
-    //   view 
-    //   override 
-    //   returns (bool upkeepNeeded, bytes memory /* performData */) {
-    //     upkeepNeeded = block.timestamp > paydayTimestamp;
-    //     return upkeepNeeded
-    // }
+    function checkUpkeep(bytes calldata) 
+      external 
+      view 
+      override 
+      returns (bool upkeepNeeded, bytes memory /* performData */) {
+        upkeepNeeded = block.timestamp > paydayTimestamp;
+        return upkeepNeeded
+    }
 
-    // function performUpkeep(bytes calldata /* performData */) external override {
-    //     //We highly recommend revalidating the upkeep in the performUpkeep function
-    //     if (block.timestamp > paydayTimestamp) {
-    //         if (getLatestPrice() >= anchorPrice) { // let's just say tie goes to the bulls
-    //             sendWinnings(true);
-    //         } else {
-    //             sendWinnings(false);
-    //         }
-    //     }
-    // }
+    function performUpkeep(bytes calldata /* performData */) external override {
+        //We highly recommend revalidating the upkeep in the performUpkeep function
+        if (block.timestamp > paydayTimestamp) {
+            if (getLatestPrice() >= anchorPrice) { // let's just say tie goes to the bulls
+                sendWinnings(true);
+            } else {
+                sendWinnings(false);
+            }
+        }
+    }
 
     // TODO: change state
 }
