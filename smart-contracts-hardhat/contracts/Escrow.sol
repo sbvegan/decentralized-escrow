@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+// import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
 contract Escrow {
     // chainlink price feed
@@ -45,7 +46,6 @@ contract Escrow {
         state = State.INITIALIZED;
     }
 
-    // TODO: deposit functionality
     // TODO: refactor
     function bullDeposit() public payable {
         require(bull == address(0), "The bull deposit was already made.");
@@ -86,9 +86,25 @@ contract Escrow {
         return price;
     }
 
-    // TODO: checkUpkeep
+    // function checkUpkeep(bytes calldata) 
+    //   external 
+    //   view 
+    //   override 
+    //   returns (bool upkeepNeeded, bytes memory /* performData */) {
+    //     upkeepNeeded = block.timestamp > paydayTimestamp;
+    //     return upkeepNeeded
+    // }
 
-    // TODO: performUpkeep
+    // function performUpkeep(bytes calldata /* performData */) external override {
+    //     //We highly recommend revalidating the upkeep in the performUpkeep function
+    //     if (block.timestamp > paydayTimestamp) {
+    //         if (getLatestPrice() >= anchorPrice) { // let's just say tie goes to the bulls
+    //             sendWinnings(true);
+    //         } else {
+    //             sendWinnings(false);
+    //         }
+    //     }
+    // }
 
     // TODO: change state
 }
