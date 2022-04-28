@@ -59,7 +59,4 @@ describe("Escrow", () => {
     expect((await escrow.showContractBalance()).toString()).to.equal((wager * 2).toString())
   })
 
-  it("should get the price", async () => {
-    expect(await escrow.getLatestPrice()).to.not.equal(0)
-  })
 });
