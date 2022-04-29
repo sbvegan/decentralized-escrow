@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
@@ -96,7 +96,6 @@ contract Escrow is KeeperCompatibleInterface {
         )
     {
         upkeepNeeded = block.timestamp > paydayTimestamp;
-        return upkeepNeeded;
     }
 
     function performUpkeep(
@@ -104,7 +103,7 @@ contract Escrow is KeeperCompatibleInterface {
     ) external override {
         //We highly recommend revalidating the upkeep in the performUpkeep function
         if (block.timestamp > paydayTimestamp) {
-            if (getLatestPrice() >= anchorPrice) {
+            if (getLatestPrice() >= int256(anchorPrice)) {
                 // let's just say tie goes to the bulls
                 sendWinnings(true);
             } else {
