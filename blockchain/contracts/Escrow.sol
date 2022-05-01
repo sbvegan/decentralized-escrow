@@ -9,22 +9,21 @@ contract Escrow is KeeperCompatibleInterface {
     AggregatorV3Interface internal priceFeed;
 
     // participants
-    address public bull; // bets the price will be higher than anchor at expiration
-    address public bear; // bets the price will be lower than anchor at expiration
+    address public immutable bull; // bets the price will be higher than anchor at expiration
+    address public immutable bear; // bets the price will be lower than anchor at expiration
     // parameters
-    uint256 public anchorPrice; // anchor > expirationPrice --> bear and vice versa
-    uint256 public wager; // the amount each party has to put up
+    uint256 public immutable anchorPrice; // anchor > expirationPrice --> bear and vice versa
+    uint256 public immutable wager; // the amount each party has to put up
     // timekeeping
-    uint256 public initTimestamp; // timestamp the bet was initialized
-    uint256 public activeTimestamp; // timestamp the bet was fully funded
-    uint256 public paydayTimestamp; // payday / expiration time
-    // TODO: account for one deposit made
-    enum State {
-        INITIALIZED,
-        ACTIVE,
-        COMPLETE
-    } // contract state
-    State public state;
+    uint256 public immutable paydayTimestamp; // payday / expiration time
+
+    // TODO: add state tracking or emit
+    // enum State {
+    //     INITIALIZED,
+    //     ACTIVE,
+    //     COMPLETE
+    // } // contract state
+    // State public state;
 
     /** The constructor initializes the escrow betting contract
     address _assetPriceFeed - address of the chainlink datafeed
