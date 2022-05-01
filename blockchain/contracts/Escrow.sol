@@ -9,8 +9,8 @@ contract Escrow is KeeperCompatibleInterface {
     AggregatorV3Interface internal priceFeed;
 
     // participants
-    address public immutable bull; // bets the price will be higher than anchor at expiration
-    address public immutable bear; // bets the price will be lower than anchor at expiration
+    address public bull; // bets the price will be higher than anchor at expiration
+    address public bear; // bets the price will be lower than anchor at expiration
     // parameters
     uint256 public immutable anchorPrice; // anchor > expirationPrice --> bear and vice versa
     uint256 public immutable wager; // the amount each party has to put up
@@ -37,12 +37,11 @@ contract Escrow is KeeperCompatibleInterface {
         uint256 _paydayTimestamp
     ) {
         // TODO: add parameter checks
-        initTimestamp = block.timestamp;
         priceFeed = AggregatorV3Interface(_assetPriceFeed);
         wager = _wager;
         anchorPrice = _anchorPrice;
         paydayTimestamp = _paydayTimestamp;
-        state = State.INITIALIZED;
+        // state = State.INITIALIZED;
     }
 
     // TODO: refactor
