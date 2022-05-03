@@ -4,13 +4,15 @@ pragma solidity ^0.8.7;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
+error Escrow__SendWinningsFailed();
+
 contract Escrow is KeeperCompatibleInterface {
     // chainlink price feed
     AggregatorV3Interface internal priceFeed;
 
     // participants
-    address public bull; // bets the price will be higher than anchor at expiration
-    address public bear; // bets the price will be lower than anchor at expiration
+    address payable public bull; // bets the price will be higher than anchor at expiration
+    address payable public bear; // bets the price will be lower than anchor at expiration
     // parameters
     uint256 public immutable anchorPrice; // anchor > expirationPrice --> bear and vice versa
     uint256 public immutable wager; // the amount each party has to put up
@@ -48,13 +50,13 @@ contract Escrow is KeeperCompatibleInterface {
     function bullDeposit() public payable {
         require(bull == address(0), "The bull deposit was already made.");
         require(msg.value == wager, "Must deposit wager ammount.");
-        bull = msg.sender;
+        bull = payable(msg.sender);
     }
 
     function bearDeposit() public payable {
         require(bear == address(0), "The bear deposit was already made.");
         require(msg.value == wager, "Must deposit wager ammount.");
-        bear = msg.sender;
+        bear = payable(msg.sender);
     }
 
     function showContractBalance() public view returns (uint256) {
@@ -62,10 +64,14 @@ contract Escrow is KeeperCompatibleInterface {
     }
 
     function sendWinnings(bool bullWins) private {
+        bool success = false;
         if (bullWins) {
-            payable(bull).transfer(address(this).balance);
+            (success, ) = bull.call{value: address(this).balance}("");
         } else {
-            payable(bear).transfer(address(this).balance);
+            (success, ) = bear.call{value: address(this).balance}("");
+        }
+        if (!success) {
+            revert Escrow__SendWinningsFailed();
         }
     }
 
