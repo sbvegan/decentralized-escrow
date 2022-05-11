@@ -6,6 +6,29 @@ import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
 error Escrow__SendWinningsFailed();
 
+contract EscrowFactory {
+    Escrow[] public escrows;
+
+    event EscrowCreated(address escrowAddress);
+
+    function createEscrow(
+        address _assetPriceFeed,
+        uint256 _wager,
+        uint256 _anchorPrice,
+        uint256 _paydayTimestamp
+    ) external returns (address) {
+        Escrow escrow = new Escrow(
+            _assetPriceFeed,
+            _wager,
+            _anchorPrice,
+            _paydayTimestamp
+        );
+        escrows.push(escrow);
+        emit EscrowCreated(address(escrow));
+        return address(escrow);
+    }
+}
+
 contract Escrow is KeeperCompatibleInterface {
     // chainlink price feed
     AggregatorV3Interface internal priceFeed;
