@@ -4,7 +4,7 @@ Escrows require trusted third parties, this dapp is a proof of concept that show
 
 ## Inspiration
 
-When you spend an embarrassing amount of time on Twitter, you sometimes see ridiculous things. One of those things was a $22M bet on whether the spot price of $LUNA would be higher or lower than $88 in one year. The original bet was for $1M between an anon trader: AIgod and the creator of Terra: Do Kwon (I think after the fact, Do Kwon made a $10M bet with someone else under the same parameters). The trusted escrow for the bet is wealthy niche celebrity Cobie.
+When you spend an embarrassing amount of time on Twitter, you sometimes see ridiculous things. One of those things was a $2M bet on whether the spot price of $LUNA would be higher or lower than $88 in one year. The bet was for $1M between an anon trader: AIgod and the creator of Terra: Do Kwon. The trusted escrow for the bet is wealthy niche celebrity Cobie.
 
 After reading the saga, it left me thinking two things:
 
