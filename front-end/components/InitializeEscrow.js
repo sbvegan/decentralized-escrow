@@ -43,29 +43,40 @@ export default function InitializeEscrow() {
 
 
     return (
-        <div>
+
+        <div style={{
+            width: '33%',
+        }}>
+            <br />
             <Input
+                width="100%"
                 label="Chainlink Price Feed Address"
                 name="Chainlink Price Feed Address"
                 onChange={(e) => setAssetPriceFeed(e.target.value)}
             />
+            <br />
             <Input
+                width="100%"
                 label="Wager Size"
                 name="Wager Size"
                 onChange={(e) => setWager(Moralis.Units.Token(e.target.value, "18"))}
                 type="number"
             />
+            <br />
             <Input
+                width="100%"
                 label="Anchor Price"
                 name="Anchor Price"
                 onChange={(e) => setAnchorPrice(e.target.value)}
                 type="number"
             />
+            <br />
             <DatePicker
                 id="payday-date-picker"
                 label="Payday"
                 onChange={(e) => setPaydayTimestamp(e.target.value)}
             />
+            <br />
             <Button
                 color="blue"
                 id="create-escrow-button"
@@ -79,7 +90,9 @@ export default function InitializeEscrow() {
                 text="Create Escrow"
                 theme="colored"
                 type="button"
+
             />
-        </div>
+        </div >
+
     )
 }
