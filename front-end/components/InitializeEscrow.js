@@ -1,7 +1,8 @@
 import { useWeb3Contract, useMoralis } from "react-moralis";
 import { Input, DatePicker, Button } from "web3uikit"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { abi } from "../constants/escrow-factory-abi.json"
+import FundUpkeep from "./FundUpkeep";
 
 
 // on kovan
@@ -13,8 +14,10 @@ export default function InitializeEscrow() {
     const [wager, setWager] = useState(Moralis.Units.Token("0.01", "18"))
     const [anchorPrice, setAnchorPrice] = useState("300000000000")
     const [paydayTimestamp, setPaydayTimestamp] = useState("1653609600")
+    const [showLinks, setShowLinks] = useState(false)
+    const [hash, setHash] = useState("")
 
-    const { runContractFunction: createEscrow } = useWeb3Contract({
+    const { data, error, runContractFunction: createEscrow, isFetching, isLoading } = useWeb3Contract({
         chain: "kovan",
         abi: abi,
         contractAddress: ESCROW_FACTORY_ADDRESS,
@@ -27,18 +30,29 @@ export default function InitializeEscrow() {
         }
     })
 
+    const handleCreate = async () => {
+        const tx = await createEscrow({
+            onComplete: handleComplete,
+            onError: handleError,
+            onSuccess: handleSuccess
+        })
+        console.log("tx: ", tx)
+    }
+
     const handleComplete = async (tx) => {
         console.log("COMPLETE")
-    }
-
-    const handleError = async (error) => {
-        console.error("ERROR")
-        console.log(error)
-    }
-
-    const handleSuccess = async (tx) => {
-        console.log("SUCCESS")
         console.log(tx)
+    }
+
+    const handleError = async (err) => {
+        console.error("ERROR")
+        console.error(err)
+    }
+
+    const handleSuccess = async (results) => {
+        console.log("SUCCESS")
+        setHash(results.hash)
+        setShowLinks(true)
     }
 
 
@@ -80,18 +94,18 @@ export default function InitializeEscrow() {
             <Button
                 color="blue"
                 id="create-escrow-button"
-                onClick={async () => {
-                    await createEscrow({
-                        onComplete: handleComplete,
-                        onError: handleError,
-                        onSuccess: handleSuccess
-                    })
-                }}
+                onClick={handleCreate}
+                disabled={isFetching}
                 text="Create Escrow"
                 theme="colored"
                 type="button"
 
             />
+            {showLinks ?
+                <FundUpkeep>{hash}</FundUpkeep>
+                :
+                <></>
+            }
         </div >
 
     )
