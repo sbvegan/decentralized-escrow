@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import InitializeEscrow from '../components/InitializeEscrow'
-import FundUpkeep from '../components/FundUpkeep'
+import EscrowTable from '../components/EscrowTable'
 import { useMoralis } from 'react-moralis'
 import { TabList, Tab } from 'web3uikit'
 export default function Home() {
@@ -26,9 +26,7 @@ export default function Home() {
               tabKey={2}
               tabName="Place Your Bets"
             >
-              <div>
-                This is Card 2
-              </div>
+              <EscrowTable />
             </Tab>
           </TabList>
         </> :
