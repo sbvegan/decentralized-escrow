@@ -12,8 +12,99 @@ export default function EscrowTable() {
         [
             <Avatar isRounded size={36} theme="image" />,
             'Moralis Magi',
-            '0x18...130e',
-            '0x18...130e',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
+            '2022 May 27th',
+            <div
+                style={{ cursor: "pointer" }}
+                onClick={setShowModal} >
+                <Icon fill="black" size={32} svg="usdc" />
+
+            </div>
+        ],
+        [
+            <Avatar isRounded size={36} theme="image" />,
+            'Moralis Magi',
+            '0x08...130e',
+            '0x24...0349',
             '2022 May 27th',
             <div
                 style={{ cursor: "pointer" }}
@@ -89,8 +180,6 @@ export default function EscrowTable() {
                 onPageNumberChanged={function noRefCheck() { }}
                 pageSize={5}
             />
-
-            <div>data: {data && <pre>{JSON.stringify(data)}</pre>}</div>
         </>
     )
 }

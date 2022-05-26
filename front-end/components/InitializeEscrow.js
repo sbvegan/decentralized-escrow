@@ -72,7 +72,7 @@ export default function InitializeEscrow() {
             <br />
             <Input
                 width="100%"
-                label="Wager Size"
+                label="Wager Size (ETH)"
                 name="Wager Size"
                 onChange={(e) => setWager(Moralis.Units.Token(e.target.value, "18"))}
                 type="number"
