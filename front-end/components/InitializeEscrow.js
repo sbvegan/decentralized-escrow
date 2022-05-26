@@ -59,7 +59,8 @@ export default function InitializeEscrow() {
     return (
 
         <div style={{
-            width: '33%',
+            width: "33%",
+            margin: "auto",
         }}>
             <br />
             <Input

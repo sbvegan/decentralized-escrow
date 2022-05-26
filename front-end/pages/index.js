@@ -15,6 +15,13 @@ export default function Home() {
           <TabList
             defaultActiveKey={1}
             tabStyle="bulbUnion"
+            style={{
+              marginLeft: "2rem",
+
+              display: "flex",
+              alignContent: "end",
+              margin: "auto",
+            }}
           >
             <Tab
               tabKey={1}
@@ -30,7 +37,7 @@ export default function Home() {
             </Tab>
           </TabList>
         </> :
-        <div>No wallet detected...</div>
+        <div style={{ marginTop: "4px", marginLeft: "22px" }}>No wallet detected...</div>
 
       }
     </div>
